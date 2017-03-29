@@ -19,6 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
+    'ngMaterialSidemenu'
   ])
   .config(function ($routeProvider,$locationProvider) {
     $routeProvider
@@ -36,6 +37,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .when('/roles', {
+        templateUrl: 'views/settings/roles.html',
+        controller: 'SettingsRolesCtrl',
+        controllerAs: 'roles'
       })
       .otherwise({
         redirectTo: '/'
