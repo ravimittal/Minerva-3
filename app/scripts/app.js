@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('minervaApp', [
     'ngAnimate',
     'ngAria',
@@ -20,10 +20,15 @@ angular
     'ngTouch',
     'ngMaterial',
     'ngMaterialSidemenu'
-  ])
-  .config(function ($routeProvider,$locationProvider) {
+  ]);
+  app.config(function ($routeProvider,$locationProvider) {
     $routeProvider
-      .when('/', {
+	  .when('/', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
+      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -47,4 +52,7 @@ angular
         redirectTo: '/'
       });
       $locationProvider.hashPrefix('');
+  });
+  app.run(function($rootScope,$location) {
+	  $rootScope.httpServices=$location.protocol() + "://" + $location.host()+'/minerva-3/api/index.php/';
   });

@@ -17,10 +17,10 @@ angular.module('minervaApp')
     $scope.login=function(){
 		loginservice.getlogin($scope.uname,$scope.pass).then(function(res){
 			if(JSON.parse(res)){
-				$location.path('/home');
+				$location.path('/main');
 			}else{
 				$scope.errorMessage="Authentication Failed"
-				$location.path('/login');
+				//$location.path('/login');
 			}
 		});		
 	}
