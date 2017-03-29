@@ -7,7 +7,7 @@
  * # loginservice
  * Factory in the m3App.
  */
-angular.module('minervaApp').factory('loginservice', function($http){
+angular.module('minervaApp').factory('loginservice', function($http,$location,$rootScope){
 		return {
 			getlogin : getlogin
 		}
@@ -17,13 +17,13 @@ angular.module('minervaApp').factory('loginservice', function($http){
 			return $http({
 					method: "Post",
 					data:data,
-					url: "http://localhost/VikaLogistics-master/api/index.php/login/checklogin",
+					url: $rootScope.httpServices+"login/checklogin",
 					header:{'Content-Type':'application/x-www-form-urlencoded'}
 				}).then(function mySucces(response) {
 					return response.data;
 				}, 
 				function myError(response) {
-							return 0;
+					return 0;
 			});
 	}
 }); 
