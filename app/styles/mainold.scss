@@ -1,0 +1,441 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+#login {
+    height: 100%;
+    background: url('../images/bg-login.png') no-repeat;
+    background-size: cover;
+
+    #login-form-wrapper {
+        flex: 1 0 auto;
+        padding: 32px;
+
+        #login-form {
+            width: 384px;
+            max-width: 384px;
+            padding: 32px;
+            background: #FFFFFF;
+            text-align: center;
+
+            .logo {
+                width: 128px;
+                height: 128px;
+                line-height: 128px;
+                font-size: 86px;
+                font-weight: 500;
+                margin: 0px auto 0px;
+                color: #FFFFFF;
+                border-radius: 2px;
+            }
+
+            .title {
+                font-size: 17px;
+                margin: 16px 0 32px 0;
+            }
+
+            form {
+                width: 100%;
+                text-align: left;
+
+                md-checkbox {
+                    margin: 0;
+                }
+
+                .remember-forgot-password {
+                    font-size: 13px;
+                    margin-top: 8px;
+
+                    .remember-me {
+                        margin-bottom: 16px
+                    }
+
+                    .forgot-password {
+                        font-size: 13px;
+                        font-weight: 500;
+                        margin-bottom: 16px
+                    }
+                }
+
+                .submit-button {
+                    width: 220px;
+                    margin: 16px auto;
+                    display: block;
+                }
+            }
+
+            .register {
+                margin: 32px auto 24px auto;
+                width: 250px;
+                font-weight: 500;
+
+                .text {
+                    margin-right: 8px;
+                }
+
+                .link {
+
+                }
+            }
+
+            .separator {
+                font-size: 15px;
+                font-weight: 600;
+                margin: 24px auto 16px auto;
+                position: relative;
+                overflow: hidden;
+                width: 100px;
+                color: rgba(0, 0, 0, 0.54);
+
+                .text {
+                    display: inline-block;
+                    vertical-align: baseline;
+                    position: relative;
+                    padding: 0 8px;
+                    z-index: 9999;
+
+                    &:before, &:after {
+                        content: '';
+                        display: block;
+                        width: 30px;
+                        position: absolute;
+                        top: 10px;
+                        border-top: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+
+                    &:before {
+                        right: 100%;
+                    }
+
+                    &:after {
+                        left: 100%;
+                    }
+                }
+            }
+
+            .md-button {
+
+                &.google,
+                &.facebook {
+                    width: 192px;
+                    text-transform: none;
+                    color: #FFFFFF;
+                    font-size: 13px;
+
+                    md-icon {
+                        color: #FFFFFF;
+                        margin: 0 8px 0 0;
+                    }
+                }
+
+                &.google {
+                    background-color: #D73D32;
+                }
+
+                &.facebook {
+                    background-color: rgb(63, 92, 154);
+                }
+            }
+        }
+    }
+}
+.md-button.md-cyan-A800-bg[disabled]{
+background-color:rgba(0,0,0,0.12);
+}
+.md-checkbox.md-default-theme.md-checked .md-icon:after, md-checkbox.md-checked .md-icon:after {
+    border-color: #fff !important;
+}
+// RESPONSIVE
+@media screen and (max-width: 600px) {
+
+    #login {
+
+        #login-form-wrapper {
+            padding: 16px;
+
+            #login-form {
+                padding: 24px;
+                width: 100%;
+
+                form {
+
+                    .md-button {
+                        width: 90%;
+                    }
+                }
+
+                .md-button {
+
+                    &.google,
+                    &.facebook {
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------------------------------*/
+/*  Template Layouts
+/*----------------------------------------------------------------*/
+
+// Global
+html,
+body {
+    overflow: hidden !important;
+}
+
+
+// Boxed Layout
+body {
+
+    &.boxed {
+        background: #3F4450;
+
+        #main {
+            overflow: hidden !important;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.45);
+        }
+    }
+}
+
+// Content only
+#layout-content-only {
+    position: relative;
+    height: 100%;
+    max-height: 100%;
+
+    #content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+// Content with toolbar
+#layout-content-with-toolbar {
+    position: relative;
+    height: 100%;
+    max-height: 100%;
+
+    #content {
+        position: absolute;
+        top: 64px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+// Vertical navigation
+#layout-vertical-navigation {
+    height: 100%;
+    max-height: 100%;
+
+    #content-container {
+        position: relative;
+        overflow: hidden;
+
+        #content {
+            position: absolute;
+            top: 64px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+}
+
+// Vertical navigation with fullwidth toolbar
+#layout-vertical-navigation-fullwidth-toolbar {
+    height: 100%;
+    max-height: 100%;
+
+    #main-container {
+        position: relative;
+
+        #content-container {
+            position: relative;
+            overflow: hidden;
+
+            #content {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+}
+
+// Vertical navigation with fullwidth toolbar 2
+#layout-vertical-navigation-fullwidth-toolbar-2 {
+    height: 100%;
+    max-height: 100%;
+
+    #main-container {
+        position: relative;
+
+        #content-container {
+            position: relative;
+            overflow: hidden;
+
+            #content {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+}
+
+// Horizontal navigation
+#layout-horizontal-navigation {
+    height: 100%;
+    max-height: 100%;
+
+    #content-container {
+        position: relative;
+        overflow: hidden;
+
+        #content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
