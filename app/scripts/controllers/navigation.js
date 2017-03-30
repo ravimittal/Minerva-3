@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name minerva3App.controller:NavigationCtrl
+ * @name minervaApp.controller:NavigationCtrl
  * @description
  * # NavigationCtrl
- * Controller of the minerva3App
+ * Controller of the minervaApp
  */
-angular.module('minerva3App').controller('NavigationCtrl', function ($scope, $mdSidenav) {
+angular.module('minervaApp').controller('NavigationCtrl', function ($scope, $mdSidenav) {
 	$scope.state = false;
 	$scope.openLeftMenu = function() {
 		$mdSidenav('left').toggle();

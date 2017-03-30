@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name minerva3App.directive:sidebarDirective
+ * @name minervaApp.directive:sidebarDirective
  * @description
  * # sidebarDirective
  */
-angular.module('minerva3App')
+angular.module('minervaApp')
   .directive('sidebarDirective', function () {
     return {
         link : function(scope, element, attr) {
