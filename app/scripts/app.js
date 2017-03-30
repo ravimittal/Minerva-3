@@ -19,6 +19,7 @@ var app = angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
+    'ngMaterialSidemenu'
   ]);
   app.config(function ($routeProvider,$locationProvider) {
     $routeProvider
@@ -37,7 +38,16 @@ var app = angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-     
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
+      .when('/roles', {
+        templateUrl: 'views/settings/roles.html',
+        controller: 'SettingsRolesCtrl',
+        controllerAs: 'roles'
+      })
       .otherwise({
         redirectTo: '/'
       });

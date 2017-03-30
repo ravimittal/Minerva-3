@@ -1,0 +1,93 @@
+<div class="page-layout simple left-sidenav inner-sidenav" ng-controller="SettingsRolesCtrl">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-icon">
+                    <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+                </span>
+                <span class="md-display-2 white-fg">Roles</span>
+                <p class="success">{{role.message}}</p>
+            </div>
+        </div>
+        <!-- / APP TITLE -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- SELECTED BAR -->
+    <div ng-show="vm.selectedContacts.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+         layout="row" layout-align="start center">
+
+        <div class="close-button-wrapper" ng-click="vm.selectedContacts =[]">
+            <md-button layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                <span class="white-fg">Back</span>
+            </md-button>
+        </div>
+
+        <div flex layout="row" layout-align="space-between center">
+            <div class="multi-select-actions">
+                <md-button class="md-icon-button" ng-click="deleteSelectedContacts($event)"
+                           aria-label="delete selected" translate translate-attr-label="CONTACTS.DELETE_SELECTED">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / SELECTED BAR -->
+
+    <!-- CONTENT -->
+    <div class="content" md-background-bg layout="row" layout-align="start start">
+
+        <!-- MAIN -->
+        <div class="main" ms-scroll>
+
+            <!-- CONTACT LIST -->
+            <md-list class="contacts-list">
+
+                <!-- CONTACT ITEM -->
+                <md-list-item class="contact-item md-white-bg" ng-repeat="single_role in roles track by single_role.Role_Id">
+
+                    <md-checkbox ng-checked="vm.exists(contact, vm.selectedContacts)"
+                                 ng-click="vm.toggleSelectContact(contact, $event)"
+                                 aria-label="{{vm.exists(contact, vm.selectedContacts) ? 'Deselect' : 'Select'}}">
+                    </md-checkbox>
+                    <p class="text-truncate font-weight-600 md-title m-r-20">{{single_role.Role_Name}}</p>
+                    <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 1">www.southernhousehotel.com</p>
+                    <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 2">www.manhattan.com</p>
+                    <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 3">www.plazabeach.com</p>
+                    <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 4">www.coralhousehotel.com</p>
+                    <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 5">www.villa-venezia.com</p>
+					<md-divider ></md-divider>
+                </md-list-item>
+                <!-- CONTACT ITEM -->
+
+            </md-list>
+            <!-- / CONTACT LIST -->
+
+            <!-- NO RESULTS -->
+            <md-list-item class="no-results md-white-bg" ng-show="roles.length === 0">
+                <p translate="CONTACTS.NO_RESULTS">No results..</p>
+            </md-list-item>
+            <!-- / NO RESULTS -->
+
+        </div>
+        <!-- / MAIN -->
+
+    </div>
+    <!-- / CONTENT -->
+
+    <!-- ADD CONTACT BUTTON -->
+    <md-button class="md-fab md-accent md-icon-button" id="add-contact-button" ng-click="openContactDialog($event)"
+               aria-label="add contact" translate translate-attr-aria-label="CONTACTS.ADD_CONTACT" md-icon="plus_one">
+                 <md-icon>add</md-icon>
+    </md-button>
+    <!-- / ADD CONTACT BUTTON -->
+
+</div>

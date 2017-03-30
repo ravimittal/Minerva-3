@@ -8,12 +8,15 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.css">
     <!-- endbuild -->
   </head>
   <body ng-app="minervaApp">
@@ -22,70 +25,109 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-<!--
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+<div id="content-container"></div>
+		<div class="header">
+			<div class="header" ng-controller="NavigationCtrl">
+				<div layout="row">
+					<md-sidenav md-component-id="left" class="md-sidenav-left">
+						<md-sidemenu locked="true">
+							<md-sidemenu-group>
+								<md-subheader class="md-no-sticky">Main</md-subheader>
+								<md-sidemenu-content md-icon="home" md-heading="Dashboard" ></md-sidemenu-content>
+								<!--md-sidemenu-button href="#">Dashboard</md-sidemenu-button-->
+							</md-sidemenu-group>
+							<md-sidemenu-group>
+								<md-divider></md-divider>
+								<md-subheader class="md-no-sticky">Others</md-subheader>
+								<md-sidemenu-content  md-heading="Settings" md-arrow="true">
+									<md-sidemenu-button href="#/roles">Roles</md-sidemenu-button>
+									<md-sidemenu-button href="#">Users</md-sidemenu-button>
+									<md-sidemenu-button href="#">Websites</md-sidemenu-button>
+								</md-sidemenu-content>
+							</md-sidemenu-group>
+						</md-sidemenu>
+					</md-sidenav>
+				</div>
+       
+				<div class="navbar navbar-default m-b-0" role="navigation">
+					<md-content class="menu-toggle-button">
+						<md-button ng-click="openLeftMenu()">
+							Toggle navigation
+						</md-button>
+					</md-content>
+					<md-toolbar id="toolbar" class="top-bar-nav md-menu-toolbar md-whiteframe-1dp ng-scope">
+						<div layout="row" layout-align="start center" class="ng-scope layout-align-start-center layout-row">
+							<div layout="row" layout-align="start center" flex="" class="layout-align-start-center layout-row flex"></div>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+							<div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
+								<button class="user-button md-button ng-scope md-default-theme md-ink-ripple" type="button">
+									<div layout="row" layout-align="space-between center" class="ng-scope layout-align-space-between-center layout-row">
+										<div class="avatar-wrapper">
+											<img md-menu-align-target="" class="avatar" src="images/profile.jpg">
+											<i class="status material-icons md-color-green">check_circle</i>
+										</div>
+										<span class="username show-gt-sm" >Sam Valdes</span>
+										
+									</div>
+								<div class="md-ripple-container"></div></button>
 
-            <a class="navbar-brand" href="#/">yeomanwithscss</a>
-          </div>
+								
+							</div>
+						</div>
+					</md-toolbar>
+					<div class="main-header" layout="column" layout-align="space-between">
+						<div layout="row" layout-align="space-between" class="layout-align-space-between-stretch layout-row">
+							<div>
+								<span class="text-color-white md-display-1 font-weight-300">Welcome back, Sam!</span>
+							</div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+							<div class="toolbar">
+								<button class="md-icon-button sidenav-toggle md-button md-default-theme md-ink-ripple hide-gt-md" type="button" ng-transclude="" ng-click="vm.toggleSidenav('sidenav')" hide-gt-md="" aria-label="Toggle sidenav">
+									<md-icon md-font-icon="icon-menu" class="icon ng-scope md-default-theme md-font material-icons icon-menu" aria-hidden="true"></md-icon>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-container">
+			<div ng-view="" class="main-view"></div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+			</div>
+		</div>
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-	<div id="main" class="animate-slide-up" layout="column"><div ng-view=""></div></div>
-   
-    
+		<!-- build:js(.) scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+		<script src="bower_components/angular-messages/angular-messages.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-touch/angular-touch.js"></script>
+		<script src="bower_components/angular-material/angular-material.js"></script>
+		<script src="bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js"></script>
+		<script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
--->
- <div class="main-container">
-    <div ng-view="" class="main-view"></div>
-    </div>
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/services/loginservice.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
-</body>
+		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers/login.js"></script>
+		<script src="scripts/services/loginservice.js"></script>
+		<script src="scripts/controllers/main.js"></script>
+		<script src="scripts/controllers/about.js"></script>
+		<script src="scripts/controllers/navigation.js"></script>
+		<script src="scripts/directives/navigation.js"></script>
+<script src="scripts/controllers/settings/roles.js"></script>
+		<!-- endbuild -->
+	</body>
 </html>
