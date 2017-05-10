@@ -24,9 +24,9 @@ var app = angular
   app.config(function ($routeProvider,$locationProvider) {
     $routeProvider
 	  .when('/', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/main', {
         templateUrl: 'views/main.html',
@@ -53,6 +53,18 @@ var app = angular
       });
       $locationProvider.hashPrefix('');
   });
-  app.run(function($rootScope,$location) {
+  app.run(function($rootScope,$location,loginservice) {
 	  $rootScope.httpServices=$location.protocol() + "://" + $location.host()+'/minerva-3/api/index.php/';
+	  var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+	  if (restrictedPage) {// do not allow any other page than login if not logged in
+		  var connected=loginservice.isloggedin();
+		  connected.then(function(msg){
+			  if(!msg.data) $location.path('/login');
+		  });		 
+	  }else if(!restrictedPage){// do not allow login page if logged in
+		  var connected=loginservice.isloggedin();
+		  connected.then(function(msg){
+			  if(msg.data) $location.path('/main');
+		  });
+	  }
   });

@@ -1,28 +1,59 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Login extends CI_Controller {
+use Restserver\Libraries\REST_Controller;
+require_once APPPATH . 'libraries/REST_Controller.php';
+require_once APPPATH . 'libraries/JWT.php';
+use \Firebase\JWT\JWT;
+class Login extends REST_Controller  {
 	function __construct() { 
-         parent::__construct(); 
-         $this->load->helper('url'); 
-         $this->load->database(); 
-        
-      }
-      
-	public function checklogin()
+       parent::__construct(); 
+       $this->load->helper('url'); 
+       $this->load->library('session'); 
+       $this->load->database(); 
+    }
+    public function index_get()
+	{
+		// Display all books
+	}
+	public function checklogin_get()
+	{
+		die('get');
+	}
+	public function checklogin_post()
 	{	
-		header('Access-Control-Allow-Origin: *');
-		header('Access-Control-Allow-Headers: Content-Type');
-		header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 		$postdata = file_get_contents("php://input");
 		$request = json_decode($postdata,true);
 		if(!empty($request['uname']) && !empty($request['pass'])){
 			$query =$this->db->get_where("admin_users",array("Email_Id"=>$request['uname'],"Password"=>md5($request['pass'])));
-			$data = $query->result();
-			if($query->num_rows()=='1')
-				echo json_encode($data[0]->User_Id);
-			else
-				echo json_encode(0);
+			$data = $query->result();				
+			 if($query->num_rows()>=1) {
+				$token['id'] = $data[0]->User_Id;
+				$token['username'] = $data[0]->User_Name;
+				$date = new DateTime();
+				$token['iat'] = $date->getTimestamp();
+				$token['exp'] = $date->getTimestamp() + 60*60*5;
+				$output['id_token'] = JWT::encode($token, "my Secret key!");
+				$this->set_response($output, REST_Controller::HTTP_OK);
+			}
+			else {
+				$invalidLogin = ['invalid' => $request['uname']];
+				$this->set_response($invalidLogin, REST_Controller::HTTP_NOT_FOUND);
+			}
 		}
 	}
+	//~ public function logout(){
+		//~ $this->includeCORS();
+		//~ $this->session->sess_destroy();
+	//~ }
+	//~ public function sethere(){
+		//~ $this->session->set_userdata('login_token', true);
+	//~ }
+	//~ public function isloggedIn(){
+		//~ $this->includeCORS();
+		//~ echo '<pre>';print_r($_SESSION);
+		//~ echo 'AAA==='.$userData=$this->session->userdata('login_token');
+		//~ if(isset($userData)){
+			//~ echo 'Authenticated';
+		//~ }
+	//~ }
 }

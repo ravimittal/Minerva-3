@@ -2,16 +2,23 @@
 
 /**
  * @ngdoc service
- * @name m3App.loginservice
+ * @name minervaApp.loginservice
  * @description
  * # loginservice
- * Factory in the m3App.
+ * Factory in the minervaApp.
  */
-angular.module('minervaApp').factory('loginservice', function($http,$location,$rootScope){
-		return {
-			getlogin : getlogin
-		}
-		function getlogin(uname,pass) {
+angular.module('minervaApp').factory('loginservice', function($http,$location,$rootScope,sessionService){
+	return {
+		isloggedin : function(){
+			var $checkSessionServer=$http.post($rootScope.httpServices+"login/isloggedIn");
+			/*if(sessionService.getSess('muli')) return true;*/
+			return $checkSessionServer;
+		},
+		logout : function(){
+			sessionService.destroySess('uid');
+			$location.path('/login');
+		},
+		getlogin : function(uname,pass){
 			$http.defaults.headers.post["Content-Type"] = "text/plain";
 			var data={'uname':uname,'pass':pass}
 			return $http({
@@ -25,5 +32,6 @@ angular.module('minervaApp').factory('loginservice', function($http,$location,$r
 				function myError(response) {
 					return 0;
 			});
+		}
 	}
 }); 
