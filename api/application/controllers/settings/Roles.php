@@ -98,10 +98,11 @@ class Roles extends CI_Controller {
 		header("Access-Control-Allow-Origin: *");
 		$request_body = file_get_contents('php://input');
 		$data = (array)json_decode($request_body);
-		if(count($data) > 0){
-			$id = $data['id'];
-			if($this->roles_model->delete_role($id))
-				echo 'done';
+		if(count($data['ids']) > 0){
+			foreach($data['ids'] as $id){
+				$this->roles_model->delete_role($id);
+			}
+			echo 'done';
 		}else
 			echo 'error';
 	}
@@ -114,7 +115,7 @@ class Roles extends CI_Controller {
 		$id = null;
 		if(count($data) > 0)
 			$id = $data['id'];
-		$data['role'] = $this->roles_model->get_role($id);
+		$data['role'] = $this->roles_model->get_roles($id);
 		echo json_encode($data);
 		//~ return $this->roles_model->get_role($id);
 	}

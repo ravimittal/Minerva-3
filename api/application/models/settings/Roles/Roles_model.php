@@ -30,7 +30,7 @@ class Roles_model extends CI_Model {
 	public function update_role($data)
 	{
 		$this->load->helper('url');
-		$id = $data['id'];
+		$id = $data['role_id'];
 		$data = array(
 			'Role_Name' => $data['role_name'],
 			'Role_Permissions' => $data['role_permissions'],

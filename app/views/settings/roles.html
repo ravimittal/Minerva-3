@@ -1,4 +1,4 @@
-<div class="page-layout simple left-sidenav inner-sidenav" ng-controller="SettingsRolesCtrl">
+<div class="page-layout simple left-sidenav inner-sidenav">
 
     <!-- HEADER -->
     <div class="header md-accent-bg" layout="row" layout-align="space-between center">
@@ -10,10 +10,20 @@
                     <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
                 </span>
                 <span class="md-display-2 white-fg">Roles</span>
-                <p class="success">{{role.message}}</p>
+                <md-icon ng-click="deleteRolesConfirm();" ng-if="sizeOf(selectedRoles)" ng-style="{color: '#43bdd4', 'font-size':'36px', height:'36px'}">delete</md-icon>
             </div>
         </div>
         <!-- / APP TITLE -->
+         <!-- SEARCH -->
+        <div class="search-input-wrapper" layout="row" layout-align="start center">
+            <label for="search">
+                <md-icon md-font-icon="icon-magnify"></md-icon>
+            </label>
+            <md-input-container md-no-float class="m-0">
+                <input id="search" placeholder="Search for roles" type="text" ng-model="searchfilter">
+            </md-input-container>
+        </div>
+        <!-- / SEARCH -->
 
     </div>
     <!-- / HEADER -->
@@ -52,11 +62,8 @@
             <md-list class="contacts-list">
 
                 <!-- CONTACT ITEM -->
-                <md-list-item class="contact-item md-white-bg" ng-repeat="single_role in roles track by single_role.Role_Id">
-
-                    <md-checkbox ng-checked="vm.exists(contact, vm.selectedContacts)"
-                                 ng-click="vm.toggleSelectContact(contact, $event)"
-                                 aria-label="{{vm.exists(contact, vm.selectedContacts) ? 'Deselect' : 'Select'}}">
+                <md-list-item ng-click="update(single_role.Role_Id)" class="contact-item md-white-bg" ng-repeat="single_role in roles | filter:searchfilter track by single_role.Role_Id">
+                    <md-checkbox ng-checked="exists(single_role.Role_Id, selectedRoles)" ng-click="toggleSelectRole(single_role.Role_Id, selectedRoles)" >
                     </md-checkbox>
                     <p class="text-truncate font-weight-600 md-title m-r-20">{{single_role.Role_Name}}</p>
                     <p class="text-truncate font-weight-600 md-title" ng-if="single_role.Role_Websites == 1">www.southernhousehotel.com</p>

@@ -2,7 +2,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
-
+$red: #FF5252;
+$green: #4CAF50;
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -70,6 +71,22 @@ body {
 }
 .m-r-20 {
     margin-right: 20px !important;
+}
+md-toast {
+	margin: auto;
+    max-width: 600px;
+  &.error {
+    .md-toast-content {
+      background: $red;
+      color: white;
+    }
+  }
+  &.success {
+    .md-toast-content {
+      background: $green;
+      color: white;
+    }
+  }
 }
 md-content.menu-toggle-button {
     width: 20%;
