@@ -4,18 +4,18 @@
         <!-- DIALOG CONTENT -->
         <md-dialog-content ms-scroll style="max-width:800px;max-height:1000px; ">
 			 <md-tabs md-dynamic-height md-border-bottom>
-				<md-tab label="Add New Role" class="first-contact-tab">
+				<md-tab label="{{vm.role.title}}" class="first-contact-tab">
 				  <md-content class="md-padding margin-top">
 					<md-input-container class="md-icon-float md-block">
 						<label>Role Name (required)</label>
 						<md-icon md-font-icon="icon-account" class="name"></md-icon>
-						<input ng-model="role.name" type="text" required md-autofocus>
+						<input ng-model="vm.role.name" type="text" required md-autofocus>
 					</md-input-container>
 
 					<md-input-container class="md-icon-float md-block">
 						<label>Websites</label>
 						<md-icon></md-icon>
-						<md-select class="websites" ng-model="role.website" placeholder="Select a website" required>
+						<md-select class="websites" ng-model="vm.role.website" placeholder="Select a website" required>
 							<md-option ng-value="1">www.southernhousehotel.com</md-option>
 							<md-option ng-value="2">www.manhattan.com</md-option>
 							<md-option ng-value="3">www.plazabeach.com</md-option>
@@ -27,7 +27,7 @@
 					<md-input-container class="md-icon-float md-block">
 						<label>Permission</label>
 						<md-icon></md-icon>
-						<input ng-model="role.permission" type="text" required>
+						<input ng-model="vm.role.permission" type="text" required>
 					</md-input-container>
 				  </md-content>
 				</md-tab>
@@ -39,8 +39,11 @@
         <!-- DIALOG ACTIONS -->
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-button type="submit" ng-click="addNewRole(role)" class="send-button md-accent md-raised white-fg" ng-disabled="roleForm.$invalid || roleForm.$pristine" >
+                <md-button type="submit" ng-click="addNewRole(vm.role)" class="send-button md-accent md-raised white-fg" ng-disabled="roleForm.$invalid || roleForm.$pristine" ng-if="vm.role.id == null">
                     ADD ROLE
+                </md-button>
+                <md-button type="submit" ng-click="addNewRole(vm.role)" class="send-button md-accent md-raised white-fg" ng-disabled="roleForm.$invalid || roleForm.$pristine"  ng-if="vm.role.id != null">
+                    SAVE
                 </md-button>
             </div>
         </md-dialog-actions>

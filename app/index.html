@@ -49,7 +49,43 @@
 					</md-sidenav>
 				</div>
        
+
 				<div top-header></div><!-- calling directive for top header-->
+
+				<div class="navbar navbar-default m-b-0" role="navigation">
+					<md-content class="menu-toggle-button">
+						<md-button ng-click="openLeftMenu()">
+							Toggle navigation
+						</md-button>
+					</md-content>
+					<md-toolbar id="toolbar" class="top-bar-nav md-menu-toolbar md-whiteframe-1dp ng-scope">
+						<div layout="row" layout-align="start center" class="ng-scope layout-align-start-center layout-row">
+							<div layout="row" layout-align="start center" flex="" class="layout-align-start-center layout-row flex"></div>
+
+							<div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
+								<button class="user-button md-button ng-scope md-default-theme md-ink-ripple" type="button">
+									<div layout="row" layout-align="space-between center" class="ng-scope layout-align-space-between-center layout-row">
+										<div class="avatar-wrapper">
+											<img md-menu-align-target="" class="avatar" src="images/profile.jpg">
+											<i class="status material-icons md-color-green">check_circle</i>
+										</div>
+										<span class="username show-gt-sm" >Sam Valdes</span>
+										
+									</div>
+								<div class="md-ripple-container"></div></button>
+
+								
+							</div>
+						</div>
+					</md-toolbar>
+					<div class="main-header" layout="column" layout-align="space-between">
+						<div layout="row" layout-align="space-between" class="layout-align-space-between-stretch layout-row">
+							<div>
+								<span class="text-color-white md-display-1 font-weight-300">Welcome back, Sam!</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="main-container">
@@ -92,6 +128,7 @@
 		<script src="scripts/directives/navigation.js"></script>
 		<script src="scripts/directives/topheader.js"></script>
 <script src="scripts/controllers/settings/roles.js"></script>
+<script src="scripts/controllers/settings/rolesdailog.js"></script>
 		<!-- endbuild -->
 	</body>
 </html>
